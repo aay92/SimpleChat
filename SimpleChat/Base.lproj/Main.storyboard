@@ -229,6 +229,9 @@
                                 <buttonConfiguration key="configuration" style="plain" title=" ">
                                     <imageReference key="image" image="xmark" catalog="system" symbolScale="large"/>
                                 </buttonConfiguration>
+                                <connections>
+                                    <action selector="closeVCBtn:" destination="6xp-aC-9pp" eventType="touchUpInside" id="v8D-iD-16o"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Nap-oV-pDJ"/>
@@ -373,6 +376,9 @@
                                         <buttonConfiguration key="configuration" style="plain" title=" ">
                                             <imageReference key="image" image="xmark" catalog="system" symbolScale="large"/>
                                         </buttonConfiguration>
+                                        <connections>
+                                            <action selector="closeVCBtn:" destination="tkm-pu-gZ7" eventType="touchUpInside" id="jvL-hL-fGp"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <viewLayoutGuide key="safeArea" id="Eed-El-pLC"/>

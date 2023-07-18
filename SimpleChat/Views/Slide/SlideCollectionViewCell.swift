@@ -16,14 +16,18 @@ class SlideCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var btnAuth: UIButton!
     @IBOutlet weak var btnReg: UIButton!
     
+    var delegate: LoginViewControllerDelegate?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         
     }
 
     @IBAction func regBtn(_ sender: Any) {
+        delegate?.openRegVC()
     }
     @IBAction func authBtn(_ sender: Any) {
+        delegate?.openAuthVC()
     }
     
     func config(slide: Slide){
