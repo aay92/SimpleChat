@@ -246,6 +246,15 @@
                             <constraint firstItem="6h9-ES-b6a" firstAttribute="top" secondItem="Nap-oV-pDJ" secondAttribute="top" id="tIB-Fp-exf"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="eamilField" destination="PN8-Gt-I7t" id="Yof-zF-6tv"/>
+                        <outlet property="mainView" destination="Csn-SY-E8K" id="Vod-cG-8Nh"/>
+                        <outlet property="passwordField" destination="ehF-K5-6B8" id="Wx2-91-Cf9"/>
+                        <outlet property="passwordView" destination="b9u-iw-vx6" id="xfK-4m-t7g"/>
+                        <outlet property="rePasswordField" destination="x9E-3z-oww" id="HaP-UU-xl0"/>
+                        <outlet property="rePasswordView" destination="kXN-kP-5Gz" id="Jfb-lh-y6E"/>
+                        <outlet property="viewEmail" destination="QUy-go-l21" id="OcG-2r-hyD"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="abC-LU-BYi" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

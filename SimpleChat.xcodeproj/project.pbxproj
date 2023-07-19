@@ -22,6 +22,7 @@
 		5B1DA66A2A62B496004AEA44 /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B1DA6692A62B496004AEA44 /* AuthViewController.swift */; };
 		5B1DA66C2A62B5AD004AEA44 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B1DA66B2A62B5AD004AEA44 /* TabBarController.swift */; };
 		5B1DA66E2A62B78E004AEA44 /* AppViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B1DA66D2A62B78E004AEA44 /* AppViewController.swift */; };
+		5B44E6AC2A6858A3001DCB3E /* CheckField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B44E6AB2A6858A3001DCB3E /* CheckField.swift */; };
 		A4B7C4F18D15880D3C3C7AB8 /* Pods_SimpleChat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A552DCF309029BE2A7084D17 /* Pods_SimpleChat.framework */; };
 /* End PBXBuildFile section */
 
@@ -43,6 +44,7 @@
 		5B1DA6692A62B496004AEA44 /* AuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
 		5B1DA66B2A62B5AD004AEA44 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		5B1DA66D2A62B78E004AEA44 /* AppViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppViewController.swift; sourceTree = "<group>"; };
+		5B44E6AB2A6858A3001DCB3E /* CheckField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckField.swift; sourceTree = "<group>"; };
 		A552DCF309029BE2A7084D17 /* Pods_SimpleChat.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SimpleChat.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8D564657FF00A2569C16912 /* Pods-SimpleChat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SimpleChat.debug.xcconfig"; path = "Target Support Files/Pods-SimpleChat/Pods-SimpleChat.debug.xcconfig"; sourceTree = "<group>"; };
 		DF8B3ECE0FFF2572F144CF55 /* Pods-SimpleChat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SimpleChat.release.xcconfig"; path = "Target Support Files/Pods-SimpleChat/Pods-SimpleChat.release.xcconfig"; sourceTree = "<group>"; };
@@ -125,6 +127,7 @@
 			children = (
 				5B1DA6632A61C7FE004AEA44 /* Model.swift */,
 				5B1DA6652A62B362004AEA44 /* SliderSlide.swift */,
+				5B44E6AB2A6858A3001DCB3E /* CheckField.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -284,6 +287,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5B1DA66E2A62B78E004AEA44 /* AppViewController.swift in Sources */,
+				5B44E6AC2A6858A3001DCB3E /* CheckField.swift in Sources */,
 				5B1DA6662A62B362004AEA44 /* SliderSlide.swift in Sources */,
 				5B1DA6642A61C7FE004AEA44 /* Model.swift in Sources */,
 				5B1DA6612A61BF60004AEA44 /* SlideCollectionViewCell.swift in Sources */,
