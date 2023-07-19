@@ -11,7 +11,6 @@ class RegViewController: UIViewController {
     
     @IBOutlet weak var eamilField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
-    
     @IBOutlet weak var rePasswordField: UITextField!
     
     
@@ -20,16 +19,16 @@ class RegViewController: UIViewController {
     @IBOutlet weak var passwordView: UIView!
     @IBOutlet weak var rePasswordView: UIView!
     
-    
+    var service = Service.shared
     var delegate: LoginViewControllerDelegate!
     var checkField = CheckField.shared
-    var tapGestureRecognizer = UITapGestureRecognizer?
+    var tapGestureRecognizer: UITapGestureRecognizer?
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(closeEditing))
-        mainView.addGestureRecognizer(tapGestureRecognizer)
+        mainView.addGestureRecognizer(tapGestureRecognizer!)
 
     }
     
@@ -39,5 +38,28 @@ class RegViewController: UIViewController {
     
     @IBAction func closeVCBtn(_ sender: Any) {
         delegate?.closeVC()
+    }
+    ///Валидация ввода данных с текст филда
+    @IBAction func regBtnClick(_ sender: Any) {
+        if checkField.validField(viewEmail, eamilField),
+           checkField.validField(passwordView, passwordField) {
+            if passwordField.text == rePasswordField.text {
+                service.createNewUser(LogiField(email: eamilField.text!, password: passwordField.text!)) {[weak self] code in
+                    switch code.code {
+                    case 0:
+                        print("Ошибка регистрации")
+                    case 1:
+                        print("Успешная регистрация")
+                        self?.service.confrimeEmail() ///проверка по email
+                    default:
+                        print("Неизвестная ошибка")
+                    }
+                    
+                }
+                print("Поле корректное")
+            } else {
+                print("Пароли не совподают")
+            }
+        }
     }
 }
