@@ -12,6 +12,7 @@ protocol LoginViewControllerDelegate {
     func openRegVC()
     func openAuthVC()
     func closeVC()
+    func startVC()
 }
 
 class LoginViewController: UIViewController {
@@ -89,5 +90,10 @@ extension LoginViewController: LoginViewControllerDelegate {
             self.regVC.view.removeFromSuperview()
             self.regVC = nil
         }
+    }
+    
+    func startVC(){
+        let startVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "TabBarController")
+        self.view.insertSubview(startVC.view, at: 2) // Вывожу startVC поверх открытого вью, а при следующем входе пользователь сразу попадет TabBarController
     }
 }

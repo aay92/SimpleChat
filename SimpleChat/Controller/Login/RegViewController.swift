@@ -13,7 +13,6 @@ class RegViewController: UIViewController {
     @IBOutlet weak var passwordField: UITextField!
     @IBOutlet weak var rePasswordField: UITextField!
     
-    
     @IBOutlet var mainView: UIView!
     @IBOutlet weak var viewEmail: UIView!
     @IBOutlet weak var passwordView: UIView!
@@ -51,6 +50,12 @@ class RegViewController: UIViewController {
                     case 1:
                         print("Успешная регистрация")
                         self?.service.confrimeEmail() ///проверка по email
+                        let alert = UIAlertController(title: "Massege", message: "Success", preferredStyle: .alert)
+                        let okBtn = UIAlertAction(title: "ok", style: .default) { _ in
+                            self?.delegate?.closeVC()
+                        }
+                        alert.addAction(okBtn)
+                        self?.present(alert, animated: true)
                     default:
                         print("Неизвестная ошибка")
                     }

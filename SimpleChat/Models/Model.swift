@@ -7,6 +7,10 @@
 
 import UIKit
 
+enum AuthResponse {
+    case success, error, noVerify
+}
+
 struct Slide {
     var id: Int
     var text: String
