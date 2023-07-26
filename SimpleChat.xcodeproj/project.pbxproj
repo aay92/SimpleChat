@@ -21,9 +21,11 @@
 		5B1DA6682A62B489004AEA44 /* RegViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B1DA6672A62B489004AEA44 /* RegViewController.swift */; };
 		5B1DA66A2A62B496004AEA44 /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B1DA6692A62B496004AEA44 /* AuthViewController.swift */; };
 		5B1DA66C2A62B5AD004AEA44 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B1DA66B2A62B5AD004AEA44 /* TabBarController.swift */; };
-		5B1DA66E2A62B78E004AEA44 /* AppViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B1DA66D2A62B78E004AEA44 /* AppViewController.swift */; };
+		5B1DA66E2A62B78E004AEA44 /* UsersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B1DA66D2A62B78E004AEA44 /* UsersViewController.swift */; };
 		5B44E6AC2A6858A3001DCB3E /* CheckField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B44E6AB2A6858A3001DCB3E /* CheckField.swift */; };
 		5B5F876C2A6868BB00A6B87E /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B5F876B2A6868BB00A6B87E /* Service.swift */; };
+		5BEFC3352A712B4400415A18 /* UsersTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BEFC3332A712B4400415A18 /* UsersTableViewCell.swift */; };
+		5BEFC3362A712B4400415A18 /* UsersTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5BEFC3342A712B4400415A18 /* UsersTableViewCell.xib */; };
 		A4B7C4F18D15880D3C3C7AB8 /* Pods_SimpleChat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A552DCF309029BE2A7084D17 /* Pods_SimpleChat.framework */; };
 /* End PBXBuildFile section */
 
@@ -44,9 +46,11 @@
 		5B1DA6672A62B489004AEA44 /* RegViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegViewController.swift; sourceTree = "<group>"; };
 		5B1DA6692A62B496004AEA44 /* AuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
 		5B1DA66B2A62B5AD004AEA44 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
-		5B1DA66D2A62B78E004AEA44 /* AppViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppViewController.swift; sourceTree = "<group>"; };
+		5B1DA66D2A62B78E004AEA44 /* UsersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersViewController.swift; sourceTree = "<group>"; };
 		5B44E6AB2A6858A3001DCB3E /* CheckField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckField.swift; sourceTree = "<group>"; };
 		5B5F876B2A6868BB00A6B87E /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
+		5BEFC3332A712B4400415A18 /* UsersTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersTableViewCell.swift; sourceTree = "<group>"; };
+		5BEFC3342A712B4400415A18 /* UsersTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UsersTableViewCell.xib; sourceTree = "<group>"; };
 		A552DCF309029BE2A7084D17 /* Pods_SimpleChat.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SimpleChat.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8D564657FF00A2569C16912 /* Pods-SimpleChat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SimpleChat.debug.xcconfig"; path = "Target Support Files/Pods-SimpleChat/Pods-SimpleChat.debug.xcconfig"; sourceTree = "<group>"; };
 		DF8B3ECE0FFF2572F144CF55 /* Pods-SimpleChat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SimpleChat.release.xcconfig"; path = "Target Support Files/Pods-SimpleChat/Pods-SimpleChat.release.xcconfig"; sourceTree = "<group>"; };
@@ -119,6 +123,7 @@
 		5B1DA6582A61BD17004AEA44 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				5BEFC3322A712B1A00415A18 /* Users */,
 				5B1DA65E2A61BF0E004AEA44 /* Slide */,
 			);
 			path = Views;
@@ -138,8 +143,9 @@
 		5B1DA65A2A61BD38004AEA44 /* App */ = {
 			isa = PBXGroup;
 			children = (
+				5BEFC3312A712A3700415A18 /* Messanger */,
+				5BEFC3302A712A2D00415A18 /* Users */,
 				5B1DA66B2A62B5AD004AEA44 /* TabBarController.swift */,
-				5B1DA66D2A62B78E004AEA44 /* AppViewController.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -161,6 +167,30 @@
 				5B1DA6602A61BF60004AEA44 /* SlideCollectionViewCell.xib */,
 			);
 			path = Slide;
+			sourceTree = "<group>";
+		};
+		5BEFC3302A712A2D00415A18 /* Users */ = {
+			isa = PBXGroup;
+			children = (
+				5B1DA66D2A62B78E004AEA44 /* UsersViewController.swift */,
+			);
+			path = Users;
+			sourceTree = "<group>";
+		};
+		5BEFC3312A712A3700415A18 /* Messanger */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Messanger;
+			sourceTree = "<group>";
+		};
+		5BEFC3322A712B1A00415A18 /* Users */ = {
+			isa = PBXGroup;
+			children = (
+				5BEFC3332A712B4400415A18 /* UsersTableViewCell.swift */,
+				5BEFC3342A712B4400415A18 /* UsersTableViewCell.xib */,
+			);
+			path = Users;
 			sourceTree = "<group>";
 		};
 		5EBA6E0F2943DFC095E5EDE5 /* Pods */ = {
@@ -234,6 +264,7 @@
 			files = (
 				5B1DA64E2A609283004AEA44 /* LaunchScreen.storyboard in Resources */,
 				5B1DA6622A61BF60004AEA44 /* SlideCollectionViewCell.xib in Resources */,
+				5BEFC3362A712B4400415A18 /* UsersTableViewCell.xib in Resources */,
 				5B1DA6562A60930C004AEA44 /* GoogleService-Info.plist in Resources */,
 				5B1DA64B2A609283004AEA44 /* Assets.xcassets in Resources */,
 				5B1DA6492A609282004AEA44 /* Main.storyboard in Resources */,
@@ -289,9 +320,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5B1DA66E2A62B78E004AEA44 /* AppViewController.swift in Sources */,
+				5B1DA66E2A62B78E004AEA44 /* UsersViewController.swift in Sources */,
 				5B44E6AC2A6858A3001DCB3E /* CheckField.swift in Sources */,
 				5B1DA6662A62B362004AEA44 /* SliderSlide.swift in Sources */,
+				5BEFC3352A712B4400415A18 /* UsersTableViewCell.swift in Sources */,
 				5B1DA6642A61C7FE004AEA44 /* Model.swift in Sources */,
 				5B1DA6612A61BF60004AEA44 /* SlideCollectionViewCell.swift in Sources */,
 				5B5F876C2A6868BB00A6B87E /* Service.swift in Sources */,

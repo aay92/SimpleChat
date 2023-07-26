@@ -14,27 +14,33 @@
         <!--Item 2-->
         <scene sceneID="37S-zZ-Npn">
             <objects>
-                <viewController storyboardIdentifier="AppViewController" id="xH7-Hq-q6A" customClass="AppViewController" customModule="SimpleChat" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="UsersViewController" id="xH7-Hq-q6A" customClass="UsersViewController" customModule="SimpleChat" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="FJL-cC-eTg">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Авторизован" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m1R-qL-0aN">
-                                <rect key="frame" x="145" y="308" width="103" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Ilx-CB-6iT">
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="769"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="aZx-1y-z08"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="Ilx-CB-6iT" secondAttribute="bottom" constant="83" id="0FU-QS-1qy"/>
+                            <constraint firstItem="Ilx-CB-6iT" firstAttribute="trailing" secondItem="aZx-1y-z08" secondAttribute="trailing" id="M9z-eW-t1P"/>
+                            <constraint firstItem="Ilx-CB-6iT" firstAttribute="leading" secondItem="aZx-1y-z08" secondAttribute="leading" id="MCW-B8-Lzx"/>
+                            <constraint firstItem="Ilx-CB-6iT" firstAttribute="top" secondItem="FJL-cC-eTg" secondAttribute="top" id="Mej-gC-eeh"/>
+                        </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item 2" id="jFs-tS-wQI"/>
+                    <tabBarItem key="tabBarItem" title="Item 2" image="person.3" catalog="system" selectedImage="person.3.fill" id="jFs-tS-wQI"/>
+                    <connections>
+                        <outlet property="tableView" destination="Ilx-CB-6iT" id="kHt-Kh-br8"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CeE-rx-8Kd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="713.74045801526711" y="710.56338028169023"/>
+            <point key="canvasLocation" x="822" y="1135"/>
         </scene>
         <!--Item 1-->
         <scene sceneID="XiK-xW-JQo">
@@ -55,7 +61,7 @@
                         <viewLayoutGuide key="safeArea" id="OeU-Rg-pgO"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item 1" id="ood-Q4-JWD"/>
+                    <tabBarItem key="tabBarItem" title="Item 1" image="message" catalog="system" selectedImage="message.fill" id="ood-Q4-JWD"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kz4-17-ls8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -71,8 +77,8 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
-                        <segue destination="4h5-gn-ZIc" kind="relationship" relationship="viewControllers" id="2VP-DF-sjK"/>
                         <segue destination="xH7-Hq-q6A" kind="relationship" relationship="viewControllers" id="TWf-vL-KI2"/>
+                        <segue destination="4h5-gn-ZIc" kind="relationship" relationship="viewControllers" id="pKx-CF-yar"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="md6-5r-xZb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -427,6 +433,10 @@
         </scene>
     </scenes>
     <resources>
+        <image name="message" catalog="system" width="128" height="116"/>
+        <image name="message.fill" catalog="system" width="128" height="114"/>
+        <image name="person.3" catalog="system" width="128" height="62"/>
+        <image name="person.3.fill" catalog="system" width="128" height="61"/>
         <image name="xmark" catalog="system" width="128" height="113"/>
         <namedColor name="AccentColor">
             <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
