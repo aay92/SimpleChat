@@ -53,4 +53,23 @@ class Service {
             }
         }
     }
+    
+    func getAllUsers(completion: @escaping ([String])->()){
+        //addSnapshotListener - активный слушатель изменений
+        //getDocuments - просто получает данные и все
+        Firestore.firestore().collection("users").getDocuments { querySnapshot, error in
+            if error == nil {
+                var emailList = [String]()
+                if let docs = querySnapshot?.documents {
+                    for doc in docs {
+                        let data = doc.data()
+                        let email = data["email"] as! String
+                        emailList.append(email)
+                    }
+                }
+                completion(emailList)
+            }
+        }
+        
+    }
 }

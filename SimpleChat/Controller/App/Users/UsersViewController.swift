@@ -10,6 +10,8 @@ import UIKit
 class UsersViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
+    var users = [String]()
+    let service = Service.shared
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,6 +20,14 @@ class UsersViewController: UIViewController {
         tableView.dataSource = self
         tableView.delegate = self
         tableView.separatorStyle = .none
+        getUsers()
+    }
+    
+    func getUsers(){
+        service.getAllUsers { usersArray in
+            self.users = usersArray
+            self.tableView.reloadData()
+        }
     }
 }
 
@@ -32,13 +42,14 @@ extension UsersViewController: UITableViewDelegate {
 
 extension UsersViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return users.count
 
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: UsersTableViewCell.identifier, for: indexPath) as! UsersTableViewCell
-        cell.configure(label: "DaTATA", image: "person")
+        let cellName = users[indexPath.row]
+        cell.configure(label: cellName, image: "person")
         cell.selectionStyle = .none
         return cell
     }
