@@ -26,6 +26,8 @@
 		5B5F876C2A6868BB00A6B87E /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B5F876B2A6868BB00A6B87E /* Service.swift */; };
 		5BEFC3352A712B4400415A18 /* UsersTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BEFC3332A712B4400415A18 /* UsersTableViewCell.swift */; };
 		5BEFC3362A712B4400415A18 /* UsersTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5BEFC3342A712B4400415A18 /* UsersTableViewCell.xib */; };
+		5BEFC3392A7D5CD800415A18 /* MessageListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BEFC3382A7D5CD800415A18 /* MessageListViewController.swift */; };
+		5BEFC33B2A7D5F5800415A18 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BEFC33A2A7D5F5800415A18 /* ChatViewController.swift */; };
 		A4B7C4F18D15880D3C3C7AB8 /* Pods_SimpleChat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A552DCF309029BE2A7084D17 /* Pods_SimpleChat.framework */; };
 /* End PBXBuildFile section */
 
@@ -51,6 +53,8 @@
 		5B5F876B2A6868BB00A6B87E /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 		5BEFC3332A712B4400415A18 /* UsersTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersTableViewCell.swift; sourceTree = "<group>"; };
 		5BEFC3342A712B4400415A18 /* UsersTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UsersTableViewCell.xib; sourceTree = "<group>"; };
+		5BEFC3382A7D5CD800415A18 /* MessageListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageListViewController.swift; sourceTree = "<group>"; };
+		5BEFC33A2A7D5F5800415A18 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		A552DCF309029BE2A7084D17 /* Pods_SimpleChat.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SimpleChat.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8D564657FF00A2569C16912 /* Pods-SimpleChat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SimpleChat.debug.xcconfig"; path = "Target Support Files/Pods-SimpleChat/Pods-SimpleChat.debug.xcconfig"; sourceTree = "<group>"; };
 		DF8B3ECE0FFF2572F144CF55 /* Pods-SimpleChat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SimpleChat.release.xcconfig"; path = "Target Support Files/Pods-SimpleChat/Pods-SimpleChat.release.xcconfig"; sourceTree = "<group>"; };
@@ -123,6 +127,7 @@
 		5B1DA6582A61BD17004AEA44 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				5BEFC3372A7D5C9200415A18 /* Chart */,
 				5BEFC3322A712B1A00415A18 /* Users */,
 				5B1DA65E2A61BF0E004AEA44 /* Slide */,
 			);
@@ -191,6 +196,15 @@
 				5BEFC3342A712B4400415A18 /* UsersTableViewCell.xib */,
 			);
 			path = Users;
+			sourceTree = "<group>";
+		};
+		5BEFC3372A7D5C9200415A18 /* Chart */ = {
+			isa = PBXGroup;
+			children = (
+				5BEFC3382A7D5CD800415A18 /* MessageListViewController.swift */,
+				5BEFC33A2A7D5F5800415A18 /* ChatViewController.swift */,
+			);
+			path = Chart;
 			sourceTree = "<group>";
 		};
 		5EBA6E0F2943DFC095E5EDE5 /* Pods */ = {
@@ -320,6 +334,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5BEFC3392A7D5CD800415A18 /* MessageListViewController.swift in Sources */,
 				5B1DA66E2A62B78E004AEA44 /* UsersViewController.swift in Sources */,
 				5B44E6AC2A6858A3001DCB3E /* CheckField.swift in Sources */,
 				5B1DA6662A62B362004AEA44 /* SliderSlide.swift in Sources */,
@@ -332,6 +347,7 @@
 				5B1DA66A2A62B496004AEA44 /* AuthViewController.swift in Sources */,
 				5B1DA6422A609282004AEA44 /* AppDelegate.swift in Sources */,
 				5B1DA6442A609282004AEA44 /* SceneDelegate.swift in Sources */,
+				5BEFC33B2A7D5F5800415A18 /* ChatViewController.swift in Sources */,
 				5B1DA6682A62B489004AEA44 /* RegViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
