@@ -26,6 +26,10 @@ struct Message: MessageType {
 
 class ChatViewController: MessagesViewController {
 
+    var chatID: String?
+    var otherID: String?
+    let service = Service.shared
+    
     let selfSender = Sender(senderId: "1", displayName: "Me")
     let otherSender = Sender(senderId: "2", displayName: "Alex")
     var messages = [Message]()
@@ -67,8 +71,13 @@ extension ChatViewController: MessagesDisplayDelegate, MessagesLayoutDelegate, M
 extension ChatViewController: InputBarAccessoryViewDelegate {
     ///didPressSendButtonWith - отпрака сообщения
     func inputBar(_ inputBar: InputBarAccessoryView, didPressSendButtonWith text: String) {
-        messages.append(Message(sender: selfSender, messageId: "124", sentDate: Date(), kind: .text(text))) /// messages.append добавляем сообщение в масси
-        inputBar.inputTextView.text = nil ///отчищаем поле
-        messagesCollectionView.reloadDataAndKeepOffset() /// обновляем коллекциюмм messages.append
+        let msg = Message(sender: selfSender, messageId: "124", sentDate: Date(), kind: .text(text))
+        messages.append(msg) /// messages.append добавляем сообщение в масси
+        service.sendMessage(otherID: self.otherID, convID: self.chatID, text: text, message: msg) {[weak self] isSend in
+            DispatchQueue.main.async {
+                inputBar.inputTextView.text = nil ///отчищаем поле
+                self?.messagesCollectionView.reloadDataAndKeepOffset() /// обновляем коллекциюмм messages.append
+            }
+        }
     }
 }
