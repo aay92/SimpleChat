@@ -37,9 +37,6 @@ class ChatViewController: MessagesViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        messages.append(Message(sender: selfSender, messageId: "1", sentDate: Date().addingTimeInterval(-11200), kind: .text("Привет")))
-        messages.append(Message(sender: otherSender, messageId: "2", sentDate: Date().addingTimeInterval(-10200), kind: .text("Привет. Как дела?")))
-
         ///messagesCollectionView есть в классе MessagesViewController и мы можем обращаться к экземпляру данного класса
         messagesCollectionView.messagesDataSource = self
         messagesCollectionView.messagesLayoutDelegate = self
@@ -73,7 +70,7 @@ extension ChatViewController: InputBarAccessoryViewDelegate {
     func inputBar(_ inputBar: InputBarAccessoryView, didPressSendButtonWith text: String) {
         let msg = Message(sender: selfSender, messageId: "124", sentDate: Date(), kind: .text(text))
         messages.append(msg) /// messages.append добавляем сообщение в масси
-        service.sendMessage(otherID: self.otherID, convID: self.chatID, text: text, message: msg) {[weak self] isSend in
+        service.sendMessage(otherID: self.otherID, convID: self.chatID, text: text) {[weak self] isSend in
             DispatchQueue.main.async {
                 inputBar.inputTextView.text = nil ///отчищаем поле
                 self?.messagesCollectionView.reloadDataAndKeepOffset() /// обновляем коллекциюмм messages.append

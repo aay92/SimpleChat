@@ -10,7 +10,7 @@ import UIKit
 class UsersViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
-    var users = [String]()
+    var users = [CurrentUser]()
     let service = Service.shared
     
     override func viewDidLoad() {
@@ -34,7 +34,7 @@ class UsersViewController: UIViewController {
 
 extension UsersViewController: UITableViewDelegate {
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat{
        return 80
     }
     
@@ -49,10 +49,15 @@ extension UsersViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: UsersTableViewCell.identifier, for: indexPath) as! UsersTableViewCell
         let cellName = users[indexPath.row]
-        cell.configure(label: cellName, image: "person")
+        cell.configure(label: cellName.email, image: "person")
         cell.selectionStyle = .none
         return cell
     }
     
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let userId = users[indexPath.row].id
+        let vc = ChatViewController()
+        vc.otherID = userId // Выбираем пользователя по по нажатию(индексу)
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
 }

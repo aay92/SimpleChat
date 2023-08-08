@@ -54,20 +54,25 @@ class Service {
         }
     }
     
-    func getAllUsers(completion: @escaping ([String])->()){
+    func getAllUsers(completion: @escaping ([CurrentUser])->()){
         //addSnapshotListener - активный слушатель изменений
         //getDocuments - просто получает данные и все
-        Firestore.firestore().collection("users").getDocuments { querySnapshot, error in
+        guard let email = Auth.auth().currentUser?.email else { return }//свой email
+        
+        var currentUsers = [CurrentUser]()
+        Firestore.firestore().collection("users")
+            .whereField("email", isNotEqualTo: email) //убирамем свой email
+            .getDocuments { querySnapshot, error in
             if error == nil {
-                var emailList = [String]()
                 if let docs = querySnapshot?.documents {
                     for doc in docs {
                         let data = doc.data()
+                        let docID = doc.documentID //id
                         let email = data["email"] as! String
-                        emailList.append(email)
+                        currentUsers.append(CurrentUser(id: docID, email: email))
                     }
                 }
-                completion(emailList)
+                completion(currentUsers)
             }
         }
         
@@ -75,24 +80,82 @@ class Service {
     
     
     //MARK: - Messanger
-    func sendMessage(otherID: String?, convID: String?,text: String, message: Message, completion: @escaping (Bool)->()){
-        if convID == nil {
-            ///создаем новую переписку
-        } else {
-            let msg: [String: Any] = [
-                "date": Data(),
-                "sender": message.sender.senderId,
-                "text": text
-            ]
-            Firestore.firestore().collection("conversation").document(convID!).collection("messages").addDocument(data: msg) { err in
-                if err == nil {
-                    completion(true)
-                } else {
-                    completion(false)
-                }
+    func sendMessage(otherID: String?, convID: String?,text: String, completion: @escaping (Bool)->()){
+        let ref = Firestore.firestore()
+        if let uId = Auth.auth().currentUser?.uid { //сущесвует ли пользователь
+            
+            if convID == nil {
+                ///создаем новую переписку
+                let convId = UUID().uuidString
                 
+                let selfDate: [ String: Any ] = [
+                    "date": Data(),
+                    "otherId": otherID!
+                ]
+                
+                let otherDate: [ String: Any ] = [
+                    "date": Data(),
+                    "otherId": uId
+                ]
+                
+                //переписка с человеком Х у нас есть
+                ref.collection("users")
+                    .document(uId)
+                    .collection("conversation")
+                    .document(convId)
+                    .setData(selfDate)
+                
+                
+                //переписка с нами у человека Х
+                ref.collection("users")
+                    .document(otherID!)
+                    .collection("conversation")
+                    .document(convId)
+                    .setData(otherDate)
+                
+                let msg: [String: Any] = [
+                    "date": Data(),
+                    "sender": uId,
+                    "text": text
+                ]
+                
+                let convInfo: [String: Any] = [
+                    "date": Date(),
+                    "selfSender": uId,
+                    "otherSender": otherID
+                ]
+                
+                ref.collection("conversation")
+                    .document(convId)
+                    .setData(convInfo) { err in
+                        if let err {
+                            print(err.localizedDescription)
+                            return
+                        }
+                        
+                        ref.collection("conversation")
+                            .document(convId)
+                            .collection("messages")
+                            .addDocument(data: msg)
+                    }
+                
+            } else {
+                let msg: [String: Any] = [
+                    "date": Data(),
+                    "sender": uId,
+                    "text": text
+                ]
+                Firestore.firestore().collection("conversation").document(convID!).collection("messages").addDocument(data: msg) { err in
+                    if err == nil {
+                        completion(true)
+                    } else {
+                        completion(false)
+                    }
+                    
+                }
             }
         }
+        
     }
     
     func updateConv(){
