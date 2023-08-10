@@ -43,6 +43,20 @@ class ChatViewController: MessagesViewController {
         messagesCollectionView.messagesDisplayDelegate = self
         messageInputBar.delegate = self ///делегат кпопки send
         showMessageTimestampOnSwipeLeft = true ///показывать время по свайпу
+        ///
+        if chatID == nil {
+            service.getConvId(otherID: otherID!) {[weak self] chatID in
+                self?.chatID = chatID
+                self?.getMessages(convId: chatID)
+            }
+        }
+    }
+    
+    func getMessages(convId: String){
+        service.getAllMessages(chatId: convId) {[weak self] messages in
+            self?.messages = messages
+            self?.messagesCollectionView.reloadDataAndKeepOffset()
+        }
     }
 
 }
@@ -70,11 +84,12 @@ extension ChatViewController: InputBarAccessoryViewDelegate {
     func inputBar(_ inputBar: InputBarAccessoryView, didPressSendButtonWith text: String) {
         let msg = Message(sender: selfSender, messageId: "124", sentDate: Date(), kind: .text(text))
         messages.append(msg) /// messages.append добавляем сообщение в масси
-        service.sendMessage(otherID: self.otherID, convID: self.chatID, text: text) {[weak self] isSend in
+        service.sendMessage(otherID: self.otherID, convId: self.chatID, text: text) {[weak self] convId in
             DispatchQueue.main.async {
                 inputBar.inputTextView.text = nil ///отчищаем поле
                 self?.messagesCollectionView.reloadDataAndKeepOffset() /// обновляем коллекциюмм messages.append
             }
+            self?.chatID = convId
         }
     }
 }

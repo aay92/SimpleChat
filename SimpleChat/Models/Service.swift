@@ -80,11 +80,11 @@ class Service {
     
     
     //MARK: - Messanger
-    func sendMessage(otherID: String?, convID: String?,text: String, completion: @escaping (Bool)->()){
+    func sendMessage(otherID: String?, convId: String?,text: String, completion: @escaping (String)->()){
         let ref = Firestore.firestore()
         if let uId = Auth.auth().currentUser?.uid { //сущесвует ли пользователь
             
-            if convID == nil {
+            if convId == nil {
                 ///создаем новую переписку
                 let convId = UUID().uuidString
                 
@@ -136,7 +136,11 @@ class Service {
                         ref.collection("conversation")
                             .document(convId)
                             .collection("messages")
-                            .addDocument(data: msg)
+                            .addDocument(data: msg) { err in
+                                if err == nil {
+                                    completion(convId)
+                                }
+                            }
                     }
                 
             } else {
@@ -145,11 +149,9 @@ class Service {
                     "sender": uId,
                     "text": text
                 ]
-                Firestore.firestore().collection("conversation").document(convID!).collection("messages").addDocument(data: msg) { err in
+                Firestore.firestore().collection("conversation").document(convId!).collection("messages").addDocument(data: msg) { err in
                     if err == nil {
-                        completion(true)
-                    } else {
-                        completion(false)
+                        completion(convId!)
                     }
                     
                 }
@@ -162,12 +164,69 @@ class Service {
         
     }
     
-    func getConvId(){
-        
+    func getConvId(otherID: String, completion: @escaping (String)->()){
+        if let uid = Auth.auth().currentUser?.uid {
+            let ref = Firestore.firestore()
+            
+            ref.collection("users")
+                .document(uid)
+                .collection("conversation")
+                .whereField("otherId", isEqualTo: otherID)
+                .getDocuments { snap, err in
+                    if let err {
+                        return
+                    }
+                    
+                    if let snap, !snap.documents.isEmpty {
+                        let doc = snap.documents.first
+                        if let convID = doc?.documentID {
+                            completion(convID)
+                        }
+                    }
+                }
+        }
     }
     
-    func getAllMessages(){
-        
+    func getAllMessages(chatId: String, completion: @escaping ([Message])->()) {
+        if let uid = Auth.auth().currentUser?.uid {
+
+            let ref = Firestore.firestore()
+            ref.collection("conversation")
+                .document(chatId)
+                .collection("messages")
+                .limit(to: 50)
+                .order(by: "date", descending: false) ///sorted per date
+                .addSnapshotListener { snap, err in
+                    if err != nil {
+                        return
+                    }
+//                    Message(sender: selfSender, messageId: "124", sentDate: Date(), kind: .text(text))
+                    if let snap, !snap.documents.isEmpty {
+                        var msg = [Message]()
+                        var sender = Sender(senderId: uid, displayName: "Me")
+                        for doc in snap.documents {
+                            let data = doc.data()
+                            let userId = data["sender"] as! String
+                            let messageId = doc.documentID
+                            
+                            let date = data["date"] as! Timestamp
+                            let sentDate = date.dateValue()
+                            
+                            let text = data["text"] as! String
+                            
+                            if userId == uid {
+                                sender = Sender(senderId: "1", displayName: "")
+                            } else {
+                                sender = Sender(senderId: "2", displayName: "")
+                            }
+                            
+                            
+                            msg.append(Message(sender: sender, messageId: messageId, sentDate: sentDate, kind: .text(text)))
+                        }
+                        completion(msg)
+                    }
+                }
+        }
     }
     
     func getOneMessages(){
